@@ -51,25 +51,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     ])
   ];
 
-  void toggleBottonSheet() {
-    if (_controllerBS == null) {
-      _controllerBS =
-          _scaffoldKey.currentState!.showBottomSheet((context) => Container(
-                height: MediaQuery.of(context).size.height / 4,
-                decoration: const BoxDecoration(color: Colors.lightBlue),
-                child: const Center(
-                  child: Text(
-                    "Some data",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ));
-    } else {
-      _controllerBS!.close();
-      _controllerBS = null;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -164,7 +145,45 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             floatingActionButton: Builder(
               builder: (context) => FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () => toggleBottonSheet(),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => Container(
+                        padding: const EdgeInsets.all(10),
+                        height: MediaQuery.of(context).size.height / 4,
+                        decoration: const BoxDecoration(color: Colors.white),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: const [
+                                Icon(Icons.payment),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text('Сумма'),
+                                Expanded(
+                                  child: Text(
+                                    '300\$',
+                                    textAlign: TextAlign.end,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: const Text('Оплатить'),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey),
+                            )
+                          ],
+                        )),
+                  );
+                },
               ),
             ),
             bottomNavigationBar: BottomNavigationBar(
