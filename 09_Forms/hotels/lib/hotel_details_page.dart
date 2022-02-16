@@ -81,7 +81,7 @@ class _HotelDetailsPageState extends State<HotelDetailsPage> {
         items: hotelDetails.photos
             .map((item) => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: Center(child: Image.asset('assets/photo.jpg'))))
+                child: Center(child: Image.asset('assets/images/' + item))))
             .toList(),
       ),
       Expanded(

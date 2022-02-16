@@ -84,7 +84,7 @@ class _HotelsPageState extends State<HotelsPage> {
       case ListViewType.tiles:
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 5, mainAxisExtent: 230),
+              crossAxisCount: 2, mainAxisSpacing: 5, mainAxisExtent: 215),
           itemBuilder: (context, index) {
             return buildHotelGridItem(hotels[index]);
           },
@@ -121,10 +121,13 @@ class _HotelsPageState extends State<HotelsPage> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(borderRadius),
                     topRight: Radius.circular(borderRadius)),
-                child: Image.asset(
-                  'assets/photo.jpg',
-                  width: double.infinity,
-                )),
+                child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Image.asset(
+                      'assets/images/' + hotel.poster!,
+                      //width: double.infinity,
+                      fit: BoxFit.fill,
+                    ))),
             const SizedBox(
               height: 5,
             ),
@@ -179,11 +182,13 @@ class _HotelsPageState extends State<HotelsPage> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(borderRadius),
                 topRight: Radius.circular(borderRadius)),
-            child: Image.asset(
-              'assets/photo.jpg',
-              width: double.infinity,
-              //fit: BoxFit.fill,
-            )),
+            child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  'assets/images/' + hotel.poster!,
+                  //width: double.infinity,
+                  fit: BoxFit.fill,
+                ))),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
